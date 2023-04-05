@@ -10,11 +10,20 @@ import axios from 'axios';
 const fetchUsers = createAsyncThunk('users/fetch', async () => {
   const response = await axios.get('http://localhost:3005/users'); // (/users, /albums, /photos - properties in DB.JSON)
 
+  await pause(1000); // we delay the response - only for development
+
   // 'response' has the 'data' property, which is our list of users in this case
   // We return it, so we can use it in the combined reducer.
   // The returned DATA will be used as action payload of the fullfiled action case in the slice
   return response.data;
 });
+
+// [we delay the response - only for development]
+const pause = (duration) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration);
+  });
+};
 
 export { fetchUsers };
 
