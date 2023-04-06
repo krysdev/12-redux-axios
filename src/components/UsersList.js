@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../store/thunks/fetchUsers';
+import Skeleton from './Skeleton';
 
 function UsersList() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function UsersList() {
   // }, []); // eslint says the 'dispatch' is required in the dependancy array, but in fact it is not, and you can have it like this also
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Skeleton howMany={6}/>;
   }
 
   if (error) {
