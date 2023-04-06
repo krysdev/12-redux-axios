@@ -1,15 +1,15 @@
-import classNames from 'classnames';
+import classNamesLib from 'classnames';
 
-function Skeleton({ howMany, className }) {
-  const outerClassNames = classNames(
+function Skeleton({ howMany, additionalClassNames }) {
+  const outerClassNames = classNamesLib(
     'relative',
     'overflow-hidden',
     'bg-gray-200',
     'rounded',
     'mb-2.5',
-    className
+    additionalClassNames // classes received as props - height and width
   );
-  const innerClassNames = classNames(
+  const innerClassNames = classNamesLib(
     'animate-shimmer',
     'absolute',
     'inset-0',

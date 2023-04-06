@@ -17,14 +17,24 @@ function UsersList() {
   // }, []); // eslint says the 'dispatch' is required in the dependancy array, but in fact it is not, and you can have it like this also
 
   if (isLoading) {
-    return <Skeleton howMany={6}/>;
+    return <Skeleton howMany={6} additionalClassNames="h-10 w-full" />;
   }
 
   if (error) {
     return <div>ERROR</div>;
   }
 
-  return <div>{data.length}</div>;
+  const renderedUsers = data.map((user) => {
+    return (
+      <div key={user.id} className="mb-2 border rounded">
+        <div className="flex flex-row justify-between items-center m-3 cursor-pointer">
+          {user.name}
+        </div>
+      </div>
+    );
+  });
+
+  return <div>{renderedUsers}</div>;
 }
 
 export default UsersList;
