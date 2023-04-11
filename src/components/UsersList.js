@@ -4,6 +4,7 @@ import { fetchUsers, addUser } from '../store'; // import it from the STORE/INDE
 import Skeleton from './Skeleton';
 import Button from './Button';
 import { useThunk } from '../hooks/use-thunk';
+import UsersListItem from './UsersListItem';
 
 function UsersList() {
   // example of managing the state by the component even when we have Redux Store
@@ -27,25 +28,16 @@ function UsersList() {
     doCreateUser();
   };
 
-  // if (isLoading) {
+  let content;
   if (isLoadingUsers) {
-    return <Skeleton howMany={6} additionalClassNames="h-10 w-full" />;
+    content = <Skeleton howMany={6} additionalClassNames="h-10 w-full" />;
+  } else if (loadingUsersError) {
+    content = <div>ERROR</div>;
+  } else {
+    content = data.map((user) => {
+      return <UsersListItem key={user.id} user={user} />;
+    });
   }
-
-  // if (error) {
-  if (loadingUsersError) {
-    return <div>ERROR</div>;
-  }
-
-  const renderedUsers = data.map((user) => {
-    return (
-      <div key={user.id} className="mb-2 border rounded">
-        <div className="flex flex-row justify-between items-center m-3 cursor-pointer">
-          {user.name}
-        </div>
-      </div>
-    );
-  });
 
   return (
     <div>
@@ -56,7 +48,7 @@ function UsersList() {
         </Button>
         {creatingUserError && 'Error creating user...'}
       </div>
-      {renderedUsers}
+      {content}
     </div>
   );
 }

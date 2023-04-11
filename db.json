@@ -1,8 +1,16 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Myra"
+      "name": "Rachel Parker",
+      "id": 2
+    },
+    {
+      "name": "Laverne Witting",
+      "id": 3
+    },
+    {
+      "name": "Emily Schneider",
+      "id": 4
     }
   ],
   "albums": [],
