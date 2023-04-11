@@ -1,26 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, addUser } from '../store'; // import it from the STORE/INDEX.JS, not from the '../store/thunks/_ _ _.js'
 import Skeleton from './Skeleton';
 import Button from './Button';
-
-function useThunk(thunk) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const dispatch = useDispatch();
-
-  // useCallBack to return runThunk with a stable identity, so the useEffect will not use it over and over again
-  const runThunk = useCallback(() => {
-    setIsLoading(true);
-    dispatch(thunk())
-      .unwrap()
-      .catch((err) => setError(err))
-      .finally(() => setIsLoading(false));
-  }, [dispatch, thunk]);
-
-  return [runThunk, isLoading, error];
-}
 
 function UsersList() {
   // example of managing the state by the component even when we have Redux Store
