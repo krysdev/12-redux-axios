@@ -1,16 +1,12 @@
 {
   "users": [
     {
-      "name": "Rachel Parker",
+      "name": "Katie Wintheiser",
+      "id": 1
+    },
+    {
+      "name": "Lucia Ortiz",
       "id": 2
-    },
-    {
-      "name": "Laverne Witting",
-      "id": 3
-    },
-    {
-      "name": "Emily Schneider",
-      "id": 4
     }
   ],
   "albums": [],
